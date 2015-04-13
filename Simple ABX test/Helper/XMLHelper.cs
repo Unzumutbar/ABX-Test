@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 using Simple_ABX_test.Objects;
@@ -172,6 +173,7 @@ namespace Simple_ABX_test.Helper
         public static string CreateResultsFile(string probandName)
         {
             string currentTime = DateTime.Now.ToString("yyyy-MM-dd");
+            probandName = Regex.Replace(probandName, "[^0-9A-Za-z]+", "");
             string fileName = string.Format("{0}_{1}.xml", currentTime, probandName);
             string directory = string.IsNullOrEmpty(Program.Settings.ResultsDirectory) ? Program.AppDirectory : Program.Settings.ResultsDirectory;
             string fullFileName = Path.Combine(directory, fileName);

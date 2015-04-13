@@ -10,9 +10,8 @@ namespace Simple_ABX_test
 {
     static class Program
     {
-        public static int CurrentDataBaseVersion = 2;
         public static string AppDirectory = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        public static string DatabaseXmlFile = "Simple ABX test.xml";
+        public static string DatabaseXmlFile = "ABX-Test.xml";
         public static Settings Settings;
         /// <summary>
         /// The main entry point for the application.

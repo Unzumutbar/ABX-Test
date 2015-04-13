@@ -216,7 +216,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TestForm";
-            this.Text = "ABX Test";
+            this.Text = "ABX-Test";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);

@@ -33,6 +33,7 @@ namespace Simple_ABX_test
         public TestForm()
         {
             InitializeComponent();
+            ShowAllButtons(false);
         }
 
         public void ShuffleSoundFiles()
@@ -50,30 +51,41 @@ namespace Simple_ABX_test
             }
         }
 
-        private void buttonB_Click(object sender, EventArgs e)
+        private void buttonPlayA_Click(object sender, EventArgs e)
         {
-            if(_currentTestNumber == 0)
-            {
-                _mediaPlayer.Stop();
-                _mediaPlayer.Close();
-                _mediaPlayer.Open(_soundFileB);
-                _mediaPlayer.Play();
-            }
-            else
-                TestAnswerSelected("B");
+            _mediaPlayer.Stop();
+            _mediaPlayer.Close();
+            _mediaPlayer.Open(_soundFileA);
+            _mediaPlayer.Play();
         }
 
-        private void buttonA_Click(object sender, EventArgs e)
+        private void buttonPlayB_Click(object sender, EventArgs e)
         {
-            if (_currentTestNumber == 0)
-            {
-                _mediaPlayer.Stop();
-                _mediaPlayer.Close();
-                _mediaPlayer.Open(_soundFileA);
-                _mediaPlayer.Play();
-            }
-            else
-                TestAnswerSelected("A");
+            _mediaPlayer.Stop();
+            _mediaPlayer.Close();
+            _mediaPlayer.Open(_soundFileB);
+            _mediaPlayer.Play();
+        }
+
+        private void buttonX_Click(object sender, EventArgs e)
+        {
+            _mediaPlayer.Stop();
+            _mediaPlayer.Close();
+            _mediaPlayer.Open(_currentSoundFile);
+            _mediaPlayer.Play();
+
+            EnableSelectButtons(true);
+        }
+
+
+        private void buttonSelectA_Click(object sender, EventArgs e)
+        {
+            TestAnswerSelected("A");
+        }
+
+        private void buttonSelectB_Click(object sender, EventArgs e)
+        {
+            TestAnswerSelected("B");
         }
 
         private void TestAnswerSelected(string selectedAnswer)
@@ -87,33 +99,14 @@ namespace Simple_ABX_test
 
             XMLHelper.AddResult(testResult, _currentResultFile);
 
-            buttonNext.Visible = true;
-            buttonA.Visible = false;
-            buttonB.Visible = false;
-            buttonReplay.Visible = false;
-            labelSourceA.Visible = false;
-            labelSourceB.Visible = false;
-        }
-
-        private void buttonNext_Click(object sender, EventArgs e)
-        {
             if (_currentTestNumber < Program.Settings.NumberOfTests)
-            {
-                buttonNext.Visible = false;
-                buttonA.Visible = true;
-                buttonB.Visible = true;
-                labelSourceA.Visible = true;
-                labelSourceA.Text = "Sound A auswählen:";
-                labelSourceB.Visible = true;
-                labelSourceB.Text = "Sound B auswählen:";
-
-                if (!Program.Settings.LoopSound)
-                    buttonReplay.Visible = true;
-
-                StartNextTest();
-            }
+                NextTest();
             else
+            {
+                buttonNewTest.Enabled = true;
+                ShowAllButtons(false);
                 ShowResults();
+            }
         }
 
         private void ShowResults()
@@ -131,14 +124,11 @@ namespace Simple_ABX_test
             ShowResultForm.Show();
         }
 
-        private void StartNextTest()
+        private void NextTest()
         {
             _currentTestNumber++;
-            if (_currentTestNumber == Program.Settings.NumberOfTests)
-                buttonNext.Text = "Ergebnis";
-            else
-                buttonNext.Text = "Weiter";
-
+            labelTestNumber.Text = string.Format("TestNr. {0} / {1}", _currentTestNumber, Program.Settings.NumberOfTests);
+            EnableSelectButtons(false);
             Random rand = new Random();
             if (rand.Next(0, 2) == 0)
             {
@@ -152,8 +142,6 @@ namespace Simple_ABX_test
             }
             _mediaPlayer.Close();
             _mediaPlayer.Open(_currentSoundFile);
-            _mediaPlayer.Play();
-
         }
 
         private void buttonShowSettings_Click(object sender, EventArgs e)
@@ -167,10 +155,10 @@ namespace Simple_ABX_test
 
         private void buttonNewTest_Click(object sender, EventArgs e)
         {
-            ResetTest();
+            CreateNewTest();
         }
 
-        private void ResetTest()
+        private void CreateNewTest()
         {
             if (string.IsNullOrEmpty(Program.Settings.SoundFileOne) || !File.Exists(Program.Settings.SoundFileOne) ||
                 string.IsNullOrEmpty(Program.Settings.SoundFileTwo) || !File.Exists(Program.Settings.SoundFileTwo))
@@ -181,27 +169,20 @@ namespace Simple_ABX_test
 
             _mediaPlayer.Stop();
             _mediaPlayer.Close();
-            _mediaPlayer.Repeat = Program.Settings.LoopSound;
+            _mediaPlayer.Repeat = false;
             _currentTestNumber = 0;
             _currentSoundFile = string.Empty;
             _currentResultFile = string.Empty;
             _probandName = PromptHelper.ShowDialog("Bitte geben sie Ihren Namen ein", "Namen eingeben");
 
-            buttonNext.Visible = true;
-            buttonA.Visible = true;
-            buttonB.Visible = true;
-            labelSourceA.Visible = true;
-            labelSourceA.Text = "Sound A abspielen:";
-            labelSourceB.Visible = true;
-            labelSourceB.Text = "Sound B abspielen:";
-
             EnableMenuBar(false);
-
-            buttonNext.Text = "Start";
 
             ShuffleSoundFiles();
             testResults = new List<TestResult>();
             _currentResultFile = XMLHelper.CreateResultsFile(_probandName);
+            ShowAllButtons(true);
+
+            NextTest();
         }
 
         private void ShowFileNotFoundMessage()
@@ -217,18 +198,12 @@ namespace Simple_ABX_test
                 MessageBox.Show("Die Sounddatei 2 konnten nicht gefunden werden.\n Bitte prüfen Sie unter Einstellungen ob der eingegebene Pfad korrekt ist.", "Sounddatei 2 nicht gefunden");
         }
 
-        private void buttonReplay_Click(object sender, EventArgs e)
+        private void EnableMenuBar(bool isEnabled)
         {
-            _mediaPlayer.Stop();
-            _mediaPlayer.Play();
-        }
-
-        private void EnableMenuBar(bool enable)
-        {
-            buttonShowResults.Enabled = enable;
-            buttonShowSettings.Enabled = enable;
-            buttonNewTest.Enabled = enable;
-            buttonToggleLock.Visible = !enable;
+            buttonShowResults.Enabled = isEnabled;
+            buttonShowSettings.Enabled = isEnabled;
+            buttonNewTest.Enabled = isEnabled;
+            buttonToggleLock.Visible = !isEnabled;
         }
 
         private void buttonToggleLock_Click(object sender, EventArgs e)
@@ -245,6 +220,27 @@ namespace Simple_ABX_test
             }
             ShowResultsForm.UpdateList();
             ShowResultsForm.Show();
+        }
+
+        private void ShowAllButtons(bool isVisible)
+        {
+            buttonPlayA.Visible = isVisible;
+            buttonPlayB.Visible = isVisible;
+            buttonPlayX.Visible = isVisible;
+
+            buttonSelectB.Visible = isVisible;
+            buttonSelectA.Visible = isVisible;
+
+            labelPlayA.Visible = isVisible;
+            labelPlayB.Visible = isVisible;
+            labelPlayX.Visible = isVisible;
+            labelTestNumber.Visible = isVisible;
+        }
+
+        private void EnableSelectButtons (bool isEnabled)
+        {
+            buttonSelectA.Enabled = isEnabled;
+            buttonSelectB.Enabled = isEnabled;
         }
     }
 }

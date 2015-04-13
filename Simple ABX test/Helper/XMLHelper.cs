@@ -40,29 +40,8 @@ namespace Simple_ABX_test.Helper
             settings.ResultsDirectory = ReadSettingsResultsFile(doc);
             settings.AdminPassword = ReadSettingsAdminPassword(doc);
             settings.NumberOfTests = ReadSettingsNumberOfTests(doc);
-            settings.LoopSound = ReadSettingsLoopSound(doc);
 
             return settings;
-        }
-
-        private static bool ReadSettingsLoopSound(XDocument doc)
-        {
-            bool defaultLoop = true;
-            try
-            {
-                string loopAsString = (from _settings in doc.Root.Elements("Settings")
-                                        select _settings.Element("LoopSound").Value).FirstOrDefault();
-                return loopAsString == "false" ? false : true;
-
-            }
-            catch (Exception)
-            {
-                doc.Root.Element("Settings").Add(
-                    new XElement("LoopSound", defaultLoop)
-                );
-                doc.Save(Program.DatabaseXmlFile);
-                return defaultLoop;
-            }
         }
 
         private static int ReadSettingsNumberOfTests(XDocument doc)
@@ -296,7 +275,6 @@ namespace Simple_ABX_test.Helper
             target.Element("ResultsFile").Value = settings.ResultsDirectory;
             target.Element("AdminPassword").Value = settings.AdminPassword;
             target.Element("NumberOfTests").Value = settings.NumberOfTests.ToString();
-            target.Element("LoopSound").Value = settings.LoopSound ? "true" : "false";
 
             doc.Save(Program.DatabaseXmlFile);
         }

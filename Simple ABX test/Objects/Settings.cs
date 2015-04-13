@@ -13,7 +13,6 @@ namespace Simple_ABX_test.Objects
         public int NumberOfTests;
         public string ResultsDirectory;
         public string AdminPassword;
-        public bool LoopSound;
 
         public string GetResultDirectory
         {

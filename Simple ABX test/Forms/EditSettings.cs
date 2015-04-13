@@ -23,7 +23,6 @@ namespace Simple_ABX_test
             textBoxResultsFile.Text = currentSettings.ResultsDirectory;
             textBoxAdminPassword.Text = currentSettings.AdminPassword;
             textBoxNumberOfTests.Text = currentSettings.NumberOfTests.ToString();
-            checkBoxLoopSound.Checked = currentSettings.LoopSound;
         }
 
         public TestForm ParentForm
@@ -86,7 +85,6 @@ namespace Simple_ABX_test
             Program.Settings.SoundFileTwo = textBoxSoundFileTwo.Text;
             Program.Settings.ResultsDirectory = textBoxResultsFile.Text;
             Program.Settings.AdminPassword = textBoxAdminPassword.Text;
-            Program.Settings.LoopSound = checkBoxLoopSound.Checked;
 
             int numberOfTest = 0;
             if (!Int32.TryParse(textBoxNumberOfTests.Text, out numberOfTest))

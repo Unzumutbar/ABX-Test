@@ -35,30 +35,28 @@
             this.textBoxSoundFileOne = new System.Windows.Forms.TextBox();
             this.labelSoundFileOne = new System.Windows.Forms.Label();
             this.labelSoundFileTwo = new System.Windows.Forms.Label();
-            this.labelResultsFile = new System.Windows.Forms.Label();
             this.labelAdminPassword = new System.Windows.Forms.Label();
             this.textBoxSoundFileTwo = new System.Windows.Forms.TextBox();
-            this.textBoxResultsFile = new System.Windows.Forms.TextBox();
             this.textBoxAdminPassword = new System.Windows.Forms.TextBox();
-            this.labelLoopSound = new System.Windows.Forms.Label();
-            this.checkBoxLoopSound = new System.Windows.Forms.CheckBox();
             this.labelNumberOfTests = new System.Windows.Forms.Label();
             this.textBoxNumberOfTests = new System.Windows.Forms.TextBox();
             this.buttonSearchSoundOne = new System.Windows.Forms.Button();
             this.buttonSearchSoundTwo = new System.Windows.Forms.Button();
-            this.buttonSearchResultsDirectory = new System.Windows.Forms.Button();
             this.pictureAlertSoundOne = new System.Windows.Forms.PictureBox();
             this.pictureAlertSoundTwo = new System.Windows.Forms.PictureBox();
-            this.pictureAlertResultsDirectory = new System.Windows.Forms.PictureBox();
             this.pictureAlertTestCount = new System.Windows.Forms.PictureBox();
             this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.pictureAlertResultsDirectory = new System.Windows.Forms.PictureBox();
+            this.buttonSearchResultsDirectory = new System.Windows.Forms.Button();
+            this.textBoxResultsFile = new System.Windows.Forms.TextBox();
+            this.labelResultsFile = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertSoundOne)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertSoundTwo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertTestCount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -92,12 +90,10 @@
             this.tableLayoutPanel1.Controls.Add(this.labelSoundFileOne, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelSoundFileTwo, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelResultsFile, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.labelAdminPassword, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelAdminPassword, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.textBoxSoundFileTwo, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBoxResultsFile, 3, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxAdminPassword, 3, 8);
-            this.tableLayoutPanel1.Controls.Add(this.labelLoopSound, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.checkBoxLoopSound, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxAdminPassword, 3, 7);
             this.tableLayoutPanel1.Controls.Add(this.labelNumberOfTests, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.textBoxNumberOfTests, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.buttonSearchSoundOne, 4, 1);
@@ -110,12 +106,11 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
@@ -153,21 +148,11 @@
             this.labelSoundFileTwo.TabIndex = 2;
             this.labelSoundFileTwo.Text = "Sounddatei 2";
             // 
-            // labelResultsFile
-            // 
-            this.labelResultsFile.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelResultsFile.AutoSize = true;
-            this.labelResultsFile.Location = new System.Drawing.Point(20, 73);
-            this.labelResultsFile.Name = "labelResultsFile";
-            this.labelResultsFile.Size = new System.Drawing.Size(116, 13);
-            this.labelResultsFile.TabIndex = 4;
-            this.labelResultsFile.Text = "Speicherort Ergebnisse";
-            // 
             // labelAdminPassword
             // 
             this.labelAdminPassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAdminPassword.AutoSize = true;
-            this.labelAdminPassword.Location = new System.Drawing.Point(20, 155);
+            this.labelAdminPassword.Location = new System.Drawing.Point(20, 135);
             this.labelAdminPassword.Name = "labelAdminPassword";
             this.labelAdminPassword.Size = new System.Drawing.Size(82, 13);
             this.labelAdminPassword.TabIndex = 5;
@@ -181,40 +166,13 @@
             this.textBoxSoundFileTwo.Size = new System.Drawing.Size(316, 20);
             this.textBoxSoundFileTwo.TabIndex = 6;
             // 
-            // textBoxResultsFile
-            // 
-            this.textBoxResultsFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxResultsFile.Location = new System.Drawing.Point(142, 70);
-            this.textBoxResultsFile.Name = "textBoxResultsFile";
-            this.textBoxResultsFile.Size = new System.Drawing.Size(316, 20);
-            this.textBoxResultsFile.TabIndex = 8;
-            // 
             // textBoxAdminPassword
             // 
             this.textBoxAdminPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 152);
+            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 132);
             this.textBoxAdminPassword.Name = "textBoxAdminPassword";
             this.textBoxAdminPassword.Size = new System.Drawing.Size(316, 20);
             this.textBoxAdminPassword.TabIndex = 9;
-            // 
-            // labelLoopSound
-            // 
-            this.labelLoopSound.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.labelLoopSound.AutoSize = true;
-            this.labelLoopSound.Location = new System.Drawing.Point(20, 122);
-            this.labelLoopSound.Name = "labelLoopSound";
-            this.labelLoopSound.Size = new System.Drawing.Size(98, 13);
-            this.labelLoopSound.TabIndex = 10;
-            this.labelLoopSound.Text = "Sound wiederholen";
-            // 
-            // checkBoxLoopSound
-            // 
-            this.checkBoxLoopSound.AutoSize = true;
-            this.checkBoxLoopSound.Location = new System.Drawing.Point(142, 122);
-            this.checkBoxLoopSound.Name = "checkBoxLoopSound";
-            this.checkBoxLoopSound.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxLoopSound.TabIndex = 11;
-            this.checkBoxLoopSound.UseVisualStyleBackColor = true;
             // 
             // labelNumberOfTests
             // 
@@ -262,20 +220,6 @@
             this.buttonSearchSoundTwo.UseVisualStyleBackColor = false;
             this.buttonSearchSoundTwo.Click += new System.EventHandler(this.buttonSearchSoundTwo_Click);
             // 
-            // buttonSearchResultsDirectory
-            // 
-            this.buttonSearchResultsDirectory.BackColor = System.Drawing.Color.Transparent;
-            this.buttonSearchResultsDirectory.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
-            this.buttonSearchResultsDirectory.FlatAppearance.BorderSize = 0;
-            this.buttonSearchResultsDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSearchResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.search_small;
-            this.buttonSearchResultsDirectory.Location = new System.Drawing.Point(464, 70);
-            this.buttonSearchResultsDirectory.Name = "buttonSearchResultsDirectory";
-            this.buttonSearchResultsDirectory.Size = new System.Drawing.Size(20, 20);
-            this.buttonSearchResultsDirectory.TabIndex = 16;
-            this.buttonSearchResultsDirectory.UseVisualStyleBackColor = false;
-            this.buttonSearchResultsDirectory.Click += new System.EventHandler(this.buttonSearchResultsDirectory_Click);
-            // 
             // pictureAlertSoundOne
             // 
             this.pictureAlertSoundOne.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -302,19 +246,6 @@
             this.pictureAlertSoundTwo.TabStop = false;
             this.pictureAlertSoundTwo.Visible = false;
             // 
-            // pictureAlertResultsDirectory
-            // 
-            this.pictureAlertResultsDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureAlertResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.alert_small;
-            this.pictureAlertResultsDirectory.InitialImage = global::Simple_ABX_test.Properties.Resources.alert_small;
-            this.pictureAlertResultsDirectory.Location = new System.Drawing.Point(8, 70);
-            this.pictureAlertResultsDirectory.Name = "pictureAlertResultsDirectory";
-            this.pictureAlertResultsDirectory.Size = new System.Drawing.Size(6, 20);
-            this.pictureAlertResultsDirectory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureAlertResultsDirectory.TabIndex = 19;
-            this.pictureAlertResultsDirectory.TabStop = false;
-            this.pictureAlertResultsDirectory.Visible = false;
-            // 
             // pictureAlertTestCount
             // 
             this.pictureAlertTestCount.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -331,6 +262,51 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
+            // 
+            // pictureAlertResultsDirectory
+            // 
+            this.pictureAlertResultsDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureAlertResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.alert_small;
+            this.pictureAlertResultsDirectory.InitialImage = global::Simple_ABX_test.Properties.Resources.alert_small;
+            this.pictureAlertResultsDirectory.Location = new System.Drawing.Point(8, 70);
+            this.pictureAlertResultsDirectory.Name = "pictureAlertResultsDirectory";
+            this.pictureAlertResultsDirectory.Size = new System.Drawing.Size(6, 20);
+            this.pictureAlertResultsDirectory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pictureAlertResultsDirectory.TabIndex = 19;
+            this.pictureAlertResultsDirectory.TabStop = false;
+            this.pictureAlertResultsDirectory.Visible = false;
+            // 
+            // buttonSearchResultsDirectory
+            // 
+            this.buttonSearchResultsDirectory.BackColor = System.Drawing.Color.Transparent;
+            this.buttonSearchResultsDirectory.FlatAppearance.BorderColor = System.Drawing.SystemColors.Control;
+            this.buttonSearchResultsDirectory.FlatAppearance.BorderSize = 0;
+            this.buttonSearchResultsDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSearchResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.search_small;
+            this.buttonSearchResultsDirectory.Location = new System.Drawing.Point(464, 70);
+            this.buttonSearchResultsDirectory.Name = "buttonSearchResultsDirectory";
+            this.buttonSearchResultsDirectory.Size = new System.Drawing.Size(20, 20);
+            this.buttonSearchResultsDirectory.TabIndex = 16;
+            this.buttonSearchResultsDirectory.UseVisualStyleBackColor = false;
+            this.buttonSearchResultsDirectory.Click += new System.EventHandler(this.buttonSearchResultsDirectory_Click);
+            // 
+            // textBoxResultsFile
+            // 
+            this.textBoxResultsFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxResultsFile.Location = new System.Drawing.Point(142, 70);
+            this.textBoxResultsFile.Name = "textBoxResultsFile";
+            this.textBoxResultsFile.Size = new System.Drawing.Size(316, 20);
+            this.textBoxResultsFile.TabIndex = 8;
+            // 
+            // labelResultsFile
+            // 
+            this.labelResultsFile.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelResultsFile.AutoSize = true;
+            this.labelResultsFile.Location = new System.Drawing.Point(20, 73);
+            this.labelResultsFile.Name = "labelResultsFile";
+            this.labelResultsFile.Size = new System.Drawing.Size(116, 13);
+            this.labelResultsFile.TabIndex = 4;
+            this.labelResultsFile.Text = "Speicherort Ergebnisse";
             // 
             // EditSettings
             // 
@@ -352,8 +328,8 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertSoundOne)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertSoundTwo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertTestCount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -367,23 +343,21 @@
         private System.Windows.Forms.TextBox textBoxSoundFileOne;
         private System.Windows.Forms.Label labelSoundFileOne;
         private System.Windows.Forms.Label labelSoundFileTwo;
-        private System.Windows.Forms.Label labelResultsFile;
         private System.Windows.Forms.Label labelAdminPassword;
         private System.Windows.Forms.TextBox textBoxSoundFileTwo;
-        private System.Windows.Forms.TextBox textBoxResultsFile;
         private System.Windows.Forms.TextBox textBoxAdminPassword;
-        private System.Windows.Forms.Label labelLoopSound;
-        private System.Windows.Forms.CheckBox checkBoxLoopSound;
         private System.Windows.Forms.Label labelNumberOfTests;
         private System.Windows.Forms.TextBox textBoxNumberOfTests;
         private System.Windows.Forms.Button buttonSearchSoundOne;
         private System.Windows.Forms.Button buttonSearchSoundTwo;
-        private System.Windows.Forms.Button buttonSearchResultsDirectory;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.PictureBox pictureAlertSoundOne;
         private System.Windows.Forms.PictureBox pictureAlertSoundTwo;
-        private System.Windows.Forms.PictureBox pictureAlertResultsDirectory;
         private System.Windows.Forms.PictureBox pictureAlertTestCount;
+        private System.Windows.Forms.Label labelResultsFile;
+        private System.Windows.Forms.TextBox textBoxResultsFile;
+        private System.Windows.Forms.Button buttonSearchResultsDirectory;
+        private System.Windows.Forms.PictureBox pictureAlertResultsDirectory;
     }
 }

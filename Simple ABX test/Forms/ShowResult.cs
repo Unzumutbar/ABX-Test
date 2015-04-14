@@ -13,22 +13,22 @@ namespace Simple_ABX_test.Forms
 {
     public partial class ShowResult : Form
     {
-        public SortableBindingList<TestResult> Results = new SortableBindingList<TestResult>();
+        public SortableBindingList<Result> Results = new SortableBindingList<Result>();
 
         public ShowResult()
         {
             InitializeComponent();
         }
 
-        public void UpdateList(string name, List<TestResult> resultList, decimal score)
+        public void UpdateList(AbxTest abxTest)
         {
-            resultList = resultList.OrderBy(res => res.TestNumber).ToList();
-            Results = new SortableBindingList<TestResult>(resultList);
+            var resultList = abxTest.Results.OrderBy(res => res.TestNumber).ToList();
+            Results = new SortableBindingList<Result>(resultList);
             var source = new BindingSource(Results, null);
             dataGridResults.DataSource = source;
 
-            labelName.Text = name;
-            labelScore.Text = string.Format("{0}%", score*100);
+            labelName.Text = abxTest.SubjectName;
+            labelScore.Text = string.Format("{0}%", abxTest.Score* 100);
         }
     }
 }

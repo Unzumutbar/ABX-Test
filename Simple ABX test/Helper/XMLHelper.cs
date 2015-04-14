@@ -35,8 +35,6 @@ namespace Simple_ABX_test.Helper
             var settings = new Settings();
             XDocument doc = XDocument.Load(Program.DatabaseXmlFile);
 
-            settings.SoundFileOne = ReadSettingsSoundFileOne(doc);
-            settings.SoundFileTwo = ReadSettingsSoundFileTwo(doc);
             settings.ResultsDirectory = ReadSettingsResultsFile(doc);
             settings.AdminPassword = ReadSettingsAdminPassword(doc);
             settings.NumberOfTests = ReadSettingsNumberOfTests(doc);
@@ -107,57 +105,25 @@ namespace Simple_ABX_test.Helper
                 return defaultDirectory;
             }
         }
-
-        private static string ReadSettingsSoundFileTwo(XDocument doc)
-        {
-            try
-            {
-                string fileTwo = (from _settings in doc.Root.Elements("Settings")
-                                  select _settings.Element("SoundFileTwo").Value).FirstOrDefault();
-                return fileTwo;
-
-            }
-            catch (Exception)
-            {
-                doc.Root.Element("Settings").Add(
-                    new XElement("SoundFileTwo", string.Empty)
-                );
-                doc.Save(Program.DatabaseXmlFile);
-                return string.Empty;
-            }
-        }
-
-        private static string ReadSettingsSoundFileOne(XDocument doc)
-        {
-            try
-            {
-                string fileOne = (from _settings in doc.Root.Elements("Settings")
-                                  select _settings.Element("SoundFileOne").Value).FirstOrDefault();
-                return fileOne;
-
-            }
-            catch (Exception)
-            {
-                doc.Root.Element("Settings").Add(
-                    new XElement("SoundFileOne", string.Empty)
-                );
-                doc.Save(Program.DatabaseXmlFile);
-                return string.Empty;
-            }
-        }
         #endregion
 
         #region Results
 
-        public static string CreateResultsFile(string probandName)
+        public static string CreateResultFile(AbxTest abxTestToCreate)
         {
-            string currentTime = DateTime.Now.ToString("yyyy-MM-dd");
-            probandName = Regex.Replace(probandName, "[^0-9A-Za-z]+", "");
-            string fileName = string.Format("{0}_{1}.xml", currentTime, probandName);
-            string directory = string.IsNullOrEmpty(Program.Settings.ResultsDirectory) ? Program.AppDirectory : Program.Settings.ResultsDirectory;
+            string testDate = abxTestToCreate.Date.ToString("yyyy-MM-dd");
+            string subjectName = Regex.Replace(abxTestToCreate.SubjectName, "[^0-9A-Za-z]+", "");
+            string fileName = string.Format("{0}_{1}.xml", testDate, subjectName);
+            string directory = Program.Settings.GetResultDirectory;
             string fullFileName = Path.Combine(directory, fileName);
-            if (File.Exists(fullFileName))
-                File.Delete(fullFileName);
+
+            int i = 1;
+            while(File.Exists(fullFileName))
+            {
+                fileName = string.Format("{0}_{1}({2}).xml", testDate, subjectName, i);
+                fullFileName = Path.Combine(directory, fileName);
+                i++;
+            }
 
             using (XmlWriter writer = XmlWriter.Create(fullFileName))
             {
@@ -167,6 +133,10 @@ namespace Simple_ABX_test.Helper
                 writer.WriteStartElement("Name");
                 writer.WriteEndElement();
                 writer.WriteStartElement("Date");
+                writer.WriteEndElement();
+                writer.WriteStartElement("SoundFileA");
+                writer.WriteEndElement();
+                writer.WriteStartElement("SoundFileB");
                 writer.WriteEndElement();
                 writer.WriteStartElement("Score");
                 writer.WriteEndElement();
@@ -183,21 +153,23 @@ namespace Simple_ABX_test.Helper
             XElement root = doc.Root;
 
             var target = doc.Root.Element("Data");
-            target.Element("Name").Value = probandName;
-            target.Element("Date").Value = currentTime;
+            target.Element("Name").Value = subjectName;
+            target.Element("Date").Value = abxTestToCreate.Date.ToString();
+            target.Element("SoundFileA").Value = abxTestToCreate.SoundFileA;
+            target.Element("SoundFileB").Value = abxTestToCreate.SoundFileB;
 
             doc.Save(fullFileName);
 
             return fullFileName;
         }
 
-        public static List<TestResult> ReadResultList(string file)
+        public static List<Result> ReadResultList(string file)
         {
             try
             {
                 XDocument xdoc = XDocument.Load(file);
                 var resultList = (from _result in xdoc.Root.Element("Results").Elements("Result")
-                        select new TestResult
+                        select new Result
                         {
                             TestNumber = int.Parse(_result.Element("TestNumber").Value),
                             SelectedAnswer = _result.Element("SelectedAnswer").Value,
@@ -205,19 +177,25 @@ namespace Simple_ABX_test.Helper
                         }).ToList();
 
                 resultList.FirstOrDefault().ProbandName = ReadResultName(xdoc);
+                if (resultList.Count > 3)
+                {
+                    resultList.ElementAt(1).ProbandName = ReadResultSoundFileA(xdoc);
+                    resultList.ElementAt(2).ProbandName = ReadResultSoundFileB(xdoc);
+                }
+
 
                 return resultList;
             }
             catch
             {
-                return new List<TestResult>();
+                return new List<Result>();
             }
         }
 
 
-        public static void AddResult(TestResult resultToAdd, string file)
+        public static void AddResult(Result resultToAdd, AbxTest abxTest)
         {
-            XDocument doc = XDocument.Load(file);
+            XDocument doc = XDocument.Load(abxTest.File);
 
             doc.Root.Element("Results").Add(
                  new XElement("Result",
@@ -227,7 +205,7 @@ namespace Simple_ABX_test.Helper
                         )
                  );
 
-            doc.Save(file);
+            doc.Save(abxTest.File);
         }
 
         private static string ReadResultName(XDocument xdoc)
@@ -240,7 +218,7 @@ namespace Simple_ABX_test.Helper
                 string date = (from _settings in xdoc.Root.Elements("Data")
                                select _settings.Element("Date").Value).FirstOrDefault();
 
-                return string.Format("{0} {1}", date, name);
+                return string.Format("{0} {1}", name, date);
 
             }
             catch
@@ -249,16 +227,48 @@ namespace Simple_ABX_test.Helper
             }
         }
 
-        public static void UpdateTestScore(decimal score, string file)
+        private static string ReadResultSoundFileA(XDocument xdoc)
         {
-            XDocument doc = XDocument.Load(file);
+            try
+            {
+                string soundFile = (from _settings in xdoc.Root.Elements("Data")
+                               select _settings.Element("SoundFileA").Value).FirstOrDefault();
+
+                return string.Format("Sound A: {0}", Path.GetFileName(soundFile));
+
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        private static string ReadResultSoundFileB(XDocument xdoc)
+        {
+            try
+            {
+                string soundFile = (from _settings in xdoc.Root.Elements("Data")
+                                    select _settings.Element("SoundFileB").Value).FirstOrDefault();
+
+                return string.Format("Sound B: {0}", Path.GetFileName(soundFile));
+
+            }
+            catch
+            {
+                return string.Empty;
+            }
+        }
+
+        public static void UpdateTestScore(AbxTest abxTest)
+        {
+            XDocument doc = XDocument.Load(abxTest.File);
 
             XElement root = doc.Root;
 
             var target = doc.Root.Element("Data");
-            target.Element("Score").Value = score.ToString();
+            target.Element("Score").Value = abxTest.Score.ToString();
 
-            doc.Save(file);
+            doc.Save(abxTest.File);
         }
 
         #endregion
@@ -270,8 +280,6 @@ namespace Simple_ABX_test.Helper
             XElement root = doc.Root;
 
             var target = doc.Root.Element("Settings");
-            target.Element("SoundFileOne").Value = settings.SoundFileOne;
-            target.Element("SoundFileTwo").Value = settings.SoundFileTwo;
             target.Element("ResultsFile").Value = settings.ResultsDirectory;
             target.Element("AdminPassword").Value = settings.AdminPassword;
             target.Element("NumberOfTests").Value = settings.NumberOfTests.ToString();

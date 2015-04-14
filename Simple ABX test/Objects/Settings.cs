@@ -8,11 +8,15 @@ namespace Simple_ABX_test.Objects
 {
     public class Settings
     {
-        public string SoundFileOne;
-        public string SoundFileTwo;
         public int NumberOfTests;
+        public string SoundDirectory;
         public string ResultsDirectory;
         public string AdminPassword;
+
+        public string GetSoundDirectory
+        {
+            get { return string.IsNullOrEmpty(SoundDirectory) ? Program.AppDirectory : Program.Settings.SoundDirectory; }
+        }
 
         public string GetResultDirectory
         {

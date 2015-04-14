@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Forms\ConfigureNewTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConfigureNewTest.Designer.cs">
+      <DependentUpon>ConfigureNewTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ShowResult.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,7 +75,8 @@
     <Compile Include="Helper\PropertyComparer.cs" />
     <Compile Include="Helper\SortableBindingList.cs" />
     <Compile Include="Helper\XMLHelper.cs" />
-    <Compile Include="Objects\TestResult.cs" />
+    <Compile Include="Objects\ABXTest.cs" />
+    <Compile Include="Objects\Result.cs" />
     <Compile Include="Objects\Settings.cs" />
     <Compile Include="Forms\EditSettings.cs">
       <SubType>Form</SubType>
@@ -87,6 +94,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\EditSettings.resx">
       <DependentUpon>EditSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ConfigureNewTest.resx">
+      <DependentUpon>ConfigureNewTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ShowResult.resx">
       <DependentUpon>ShowResult.cs</DependentUpon>

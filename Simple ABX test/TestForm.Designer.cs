@@ -204,7 +204,7 @@
             this.buttonPlayX.TabIndex = 7;
             this.buttonPlayX.Text = "X";
             this.buttonPlayX.UseVisualStyleBackColor = true;
-            this.buttonPlayX.Click += new System.EventHandler(this.buttonX_Click);
+            this.buttonPlayX.Click += new System.EventHandler(this.buttonPlayX_Click);
             // 
             // labelPlayX
             // 

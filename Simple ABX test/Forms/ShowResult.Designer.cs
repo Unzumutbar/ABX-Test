@@ -144,7 +144,7 @@
             // 
             // testResultBindingSource
             // 
-            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.TestResult);
+            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.Result);
             // 
             // labelName
             // 
@@ -175,7 +175,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Name = "ShowResult";
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Ergebnisse";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

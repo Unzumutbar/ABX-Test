@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Simple_ABX_test.Objects
 {
-    public class TestResult
+    public class Result
     {
         public int TestNumber { get; set; }
         public string SelectedAnswer { get; set; }

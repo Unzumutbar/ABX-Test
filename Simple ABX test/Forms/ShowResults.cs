@@ -14,8 +14,8 @@ namespace Simple_ABX_test.Forms
 {
     public partial class ShowResults : Form
     {
-        public SortableBindingList<TestResult> Results = new SortableBindingList<TestResult>();
-        private List<TestResult> _resultList = new List<TestResult>();
+        public SortableBindingList<Result> Results = new SortableBindingList<Result>();
+        private List<Result> _resultList = new List<Result>();
         private List<string> _resultFiles = new List<string>();
 
         public ShowResults()
@@ -25,7 +25,7 @@ namespace Simple_ABX_test.Forms
 
         public void UpdateList()
         {
-            _resultList = new List<TestResult>();
+            _resultList = new List<Result>();
             _resultFiles = new List<string>();
             _resultList = GetResultListFromFiles();
 
@@ -40,7 +40,7 @@ namespace Simple_ABX_test.Forms
                 return;
             }
 
-            Results = new SortableBindingList<TestResult>(_resultList);
+            Results = new SortableBindingList<Result>(_resultList);
             var source = new BindingSource(Results, null);
             dataGridResults.DataSource = source;
 
@@ -53,9 +53,9 @@ namespace Simple_ABX_test.Forms
             textBoxResult.Text = string.Format("{0:0.##}%", totalScore * 100);
         }
 
-        public List<TestResult> GetResultListFromFiles()
+        public List<Result> GetResultListFromFiles()
         {
-            var resultList = new List<TestResult>();
+            var resultList = new List<Result>();
             string directory = Program.Settings.GetResultDirectory;
             foreach (var resultFile in Directory.GetFiles(directory))
             {

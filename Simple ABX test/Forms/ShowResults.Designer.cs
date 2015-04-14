@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowResults));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridResults = new System.Windows.Forms.DataGridView();
-            this.ProbandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelScoreLabel = new System.Windows.Forms.Label();
             this.labelCountTests = new System.Windows.Forms.Label();
             this.labelCountCorrect = new System.Windows.Forms.Label();
@@ -42,16 +42,16 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.buttonAddResultFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.ProbandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).BeginInit();
-            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -80,7 +80,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(596, 462);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 462);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dataGridResults
@@ -104,15 +104,12 @@
             this.dataGridResults.Name = "dataGridResults";
             this.dataGridResults.ReadOnly = true;
             this.dataGridResults.RowHeadersVisible = false;
-            this.dataGridResults.Size = new System.Drawing.Size(580, 332);
+            this.dataGridResults.Size = new System.Drawing.Size(506, 332);
             this.dataGridResults.TabIndex = 0;
             // 
-            // ProbandName
+            // testResultBindingSource
             // 
-            this.ProbandName.DataPropertyName = "ProbandName";
-            this.ProbandName.HeaderText = "Name";
-            this.ProbandName.Name = "ProbandName";
-            this.ProbandName.ReadOnly = true;
+            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.Result);
             // 
             // labelScoreLabel
             // 
@@ -151,10 +148,10 @@
             // 
             this.textBoxCountTests.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxCountTests.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCountTests.Location = new System.Drawing.Point(301, 366);
+            this.textBoxCountTests.Location = new System.Drawing.Point(264, 366);
             this.textBoxCountTests.Name = "textBoxCountTests";
             this.textBoxCountTests.ReadOnly = true;
-            this.textBoxCountTests.Size = new System.Drawing.Size(287, 22);
+            this.textBoxCountTests.Size = new System.Drawing.Size(250, 22);
             this.textBoxCountTests.TabIndex = 4;
             this.textBoxCountTests.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -162,10 +159,10 @@
             // 
             this.textBoxCountCorrect.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxCountCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCountCorrect.Location = new System.Drawing.Point(301, 394);
+            this.textBoxCountCorrect.Location = new System.Drawing.Point(264, 394);
             this.textBoxCountCorrect.Name = "textBoxCountCorrect";
             this.textBoxCountCorrect.ReadOnly = true;
-            this.textBoxCountCorrect.Size = new System.Drawing.Size(287, 22);
+            this.textBoxCountCorrect.Size = new System.Drawing.Size(250, 22);
             this.textBoxCountCorrect.TabIndex = 5;
             this.textBoxCountCorrect.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -174,10 +171,10 @@
             this.textBoxResult.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxResult.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxResult.ForeColor = System.Drawing.Color.Red;
-            this.textBoxResult.Location = new System.Drawing.Point(301, 432);
+            this.textBoxResult.Location = new System.Drawing.Point(264, 432);
             this.textBoxResult.Name = "textBoxResult";
             this.textBoxResult.ReadOnly = true;
-            this.textBoxResult.Size = new System.Drawing.Size(287, 22);
+            this.textBoxResult.Size = new System.Drawing.Size(250, 22);
             this.textBoxResult.TabIndex = 6;
             this.textBoxResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -187,7 +184,7 @@
             this.buttonAddResultFile});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(596, 24);
+            this.menuStrip.Size = new System.Drawing.Size(522, 24);
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
@@ -203,6 +200,14 @@
             // 
             this.openFileDialog.Filter = "XML-Dateien|*.xml";
             // 
+            // ProbandName
+            // 
+            this.ProbandName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ProbandName.DataPropertyName = "ProbandName";
+            this.ProbandName.HeaderText = "Name";
+            this.ProbandName.Name = "ProbandName";
+            this.ProbandName.ReadOnly = true;
+            // 
             // testNumberDataGridViewTextBoxColumn
             // 
             this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
@@ -214,34 +219,36 @@
             // 
             // selectedAnswerDataGridViewTextBoxColumn
             // 
+            this.selectedAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
             this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
             this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
             this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.selectedAnswerDataGridViewTextBoxColumn.Width = 72;
             // 
             // correctAnswerDataGridViewTextBoxColumn
             // 
+            this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
             this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "Richtig";
             this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
             this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.correctAnswerDataGridViewTextBoxColumn.Width = 65;
             // 
             // passedDataGridViewCheckBoxColumn
             // 
+            this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
             this.passedDataGridViewCheckBoxColumn.HeaderText = "Bestanden?";
             this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
             this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
-            // testResultBindingSource
-            // 
-            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.TestResult);
+            this.passedDataGridViewCheckBoxColumn.Width = 70;
             // 
             // ShowResults
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(596, 486);
+            this.ClientSize = new System.Drawing.Size(522, 486);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -251,9 +258,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,11 +273,6 @@
         private System.Windows.Forms.ToolStripMenuItem buttonAddResultFile;
         private System.Windows.Forms.DataGridView dataGridResults;
         private System.Windows.Forms.BindingSource testResultBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProbandName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn testNumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn selectedAnswerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn correctAnswerDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn passedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.Label labelScoreLabel;
         private System.Windows.Forms.Label labelCountTests;
         private System.Windows.Forms.Label labelCountCorrect;
@@ -279,5 +281,10 @@
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProbandName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn testNumberDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn selectedAnswerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn correctAnswerDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn passedDataGridViewCheckBoxColumn;
     }
 }

@@ -18,8 +18,6 @@ namespace Simple_ABX_test
             InitializeComponent();
 
             var currentSettings = Program.Settings;
-            textBoxSoundFileOne.Text = currentSettings.SoundFileOne;
-            textBoxSoundFileTwo.Text = currentSettings.SoundFileTwo;
             textBoxResultsFile.Text = currentSettings.ResultsDirectory;
             textBoxAdminPassword.Text = currentSettings.AdminPassword;
             textBoxNumberOfTests.Text = currentSettings.NumberOfTests.ToString();
@@ -38,18 +36,6 @@ namespace Simple_ABX_test
             bool error = false;
             HideAlerts();
 
-            if (string.IsNullOrEmpty(textBoxSoundFileOne.Text) || !File.Exists(textBoxSoundFileOne.Text))
-            {
-                pictureAlertSoundOne.Visible = true;
-                error = true;
-            }
-
-            if (string.IsNullOrEmpty(textBoxSoundFileTwo.Text) || !File.Exists(textBoxSoundFileTwo.Text))
-            {
-                pictureAlertSoundTwo.Visible = true;
-                error = true;
-            }
-
             if(!string.IsNullOrEmpty(textBoxResultsFile.Text) && !Directory.Exists(textBoxResultsFile.Text))
             {
                 pictureAlertResultsDirectory.Visible = true;
@@ -63,15 +49,11 @@ namespace Simple_ABX_test
                 error = true;
             }
 
-
-
             return !error;
         }
 
         private void HideAlerts()
         {
-            pictureAlertSoundOne.Visible = false;
-            pictureAlertSoundTwo.Visible = false;
             pictureAlertResultsDirectory.Visible = false;
             pictureAlertTestCount.Visible = false;
         }
@@ -81,8 +63,6 @@ namespace Simple_ABX_test
             if (!CanSave())
                 return;
 
-            Program.Settings.SoundFileOne = textBoxSoundFileOne.Text;
-            Program.Settings.SoundFileTwo = textBoxSoundFileTwo.Text;
             Program.Settings.ResultsDirectory = textBoxResultsFile.Text;
             Program.Settings.AdminPassword = textBoxAdminPassword.Text;
 
@@ -97,18 +77,6 @@ namespace Simple_ABX_test
 
             XMLHelper.UpdateSettings(Program.Settings);
             this.Close();
-        }
-
-        private void buttonSearchSoundOne_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-                textBoxSoundFileOne.Text = openFileDialog.FileName;
-        }
-
-        private void buttonSearchSoundTwo_Click(object sender, EventArgs e)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-                textBoxSoundFileTwo.Text = openFileDialog.FileName;
         }
 
         private void buttonSearchResultsDirectory_Click(object sender, EventArgs e)

@@ -45,7 +45,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -75,7 +74,7 @@
     <Compile Include="Helper\PropertyComparer.cs" />
     <Compile Include="Helper\SortableBindingList.cs" />
     <Compile Include="Helper\XMLHelper.cs" />
-    <Compile Include="Objects\ABXTest.cs" />
+    <Compile Include="Objects\AbxTest.cs" />
     <Compile Include="Objects\Result.cs" />
     <Compile Include="Objects\Settings.cs" />
     <Compile Include="Forms\EditSettings.cs">

@@ -166,7 +166,7 @@ namespace Simple_ABX_test
             _currentAbxTest = ConfigureTestDialog.newAbxTest;
 
             _mediaPlayer.Volume = 100;
-            _mediaPlayer.Repeat = false;
+            _mediaPlayer.Repeat = buttonLoop.Checked;
             _currentTestNumber = 0;
             _currentSoundFile = string.Empty;
 
@@ -197,12 +197,60 @@ namespace Simple_ABX_test
             labelPlayB.Visible = isVisible;
             labelPlayX.Visible = isVisible;
             labelTestNumber.Visible = isVisible;
+
+            toolStrip.Visible = isVisible;
         }
 
         private void EnableSelectButtons (bool isEnabled)
         {
             buttonSelectA.Enabled = isEnabled;
             buttonSelectB.Enabled = isEnabled;
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            if (!buttonPlayX.Visible)
+                return;
+
+            Graphics g;
+            g = e.Graphics;
+            Pen myPen = new Pen(Color.LightGray);
+            myPen.Width = 5;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            var PointA = GetBottomMiddleOfButton(buttonPlayA);
+            var PointB = GetBottomMiddleOfButton(buttonPlayB);
+            var PointX = GetMiddleOfButton(buttonPlayX);
+
+            g.DrawLine(myPen, PointA.X, PointA.Y, PointX.X, PointX.Y);
+            g.DrawLine(myPen, PointB.X, PointB.Y, PointX.X, PointX.Y);
+        }
+
+        private Point GetBottomMiddleOfButton(Button button)
+        {
+            return new Point(button.Location.X + (button.Width / 2), button.Location.Y + (button.Height));
+        }
+
+        private Point GetTopMiddleOfButton(Button button)
+        {
+            return new Point(button.Location.X + (button.Width / 2), button.Location.Y);
+        }
+
+        private Point GetMiddleOfButton(Button button)
+        {
+            return new Point(button.Location.X + (button.Width / 2), button.Location.Y + (button.Height / 2));
+        }
+
+        private void buttonLoop_Click(object sender, EventArgs e)
+        {
+            _mediaPlayer.Repeat = buttonLoop.Checked;
+        }
+
+        private void buttonStop_Click(object sender, EventArgs e)
+        {
+            _mediaPlayer.Stop();
         }
     }
 }

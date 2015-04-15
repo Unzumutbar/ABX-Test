@@ -26,10 +26,9 @@ namespace Simple_ABX_test.Forms
             if (abxTest == null)
                 return;
 
-            newAbxTest.SoundFileA = abxTest.SoundFileA;
-            newAbxTest.SoundFileB = abxTest.SoundFileB;
-            textBoxSoundFileOne.Text = newAbxTest.SoundFileA;
-            textBoxSoundFileTwo.Text = newAbxTest.SoundFileB;
+            textBoxSubjectName.Text = abxTest.SubjectName;
+            textBoxSoundFileOne.Text = abxTest.SoundFileA;
+            textBoxSoundFileTwo.Text = abxTest.SoundFileB;
         }
 
         private void buttonSearchSoundOne_Click(object sender, EventArgs e)

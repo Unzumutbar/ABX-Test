@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSettings));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelResultsFile = new System.Windows.Forms.Label();
             this.labelAdminPassword = new System.Windows.Forms.Label();
@@ -38,11 +37,12 @@
             this.textBoxAdminPassword = new System.Windows.Forms.TextBox();
             this.labelNumberOfTests = new System.Windows.Forms.Label();
             this.textBoxNumberOfTests = new System.Windows.Forms.TextBox();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonSearchResultsDirectory = new System.Windows.Forms.Button();
             this.pictureAlertResultsDirectory = new System.Windows.Forms.PictureBox();
             this.pictureAlertTestCount = new System.Windows.Forms.PictureBox();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).BeginInit();
@@ -58,14 +58,6 @@
             this.menuStrip.Size = new System.Drawing.Size(492, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
-            // 
-            // saveSettingsToolStripMenuItem
-            // 
-            this.saveSettingsToolStripMenuItem.Image = global::Simple_ABX_test.Properties.Resources.checkmark;
-            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.saveSettingsToolStripMenuItem.Text = "Speichern";
-            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -102,7 +94,7 @@
             // 
             this.labelResultsFile.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelResultsFile.AutoSize = true;
-            this.labelResultsFile.Location = new System.Drawing.Point(20, 73);
+            this.labelResultsFile.Location = new System.Drawing.Point(20, 11);
             this.labelResultsFile.Name = "labelResultsFile";
             this.labelResultsFile.Size = new System.Drawing.Size(116, 13);
             this.labelResultsFile.TabIndex = 4;
@@ -112,7 +104,7 @@
             // 
             this.labelAdminPassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAdminPassword.AutoSize = true;
-            this.labelAdminPassword.Location = new System.Drawing.Point(20, 135);
+            this.labelAdminPassword.Location = new System.Drawing.Point(20, 73);
             this.labelAdminPassword.Name = "labelAdminPassword";
             this.labelAdminPassword.Size = new System.Drawing.Size(82, 13);
             this.labelAdminPassword.TabIndex = 5;
@@ -121,7 +113,7 @@
             // textBoxResultsFile
             // 
             this.textBoxResultsFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxResultsFile.Location = new System.Drawing.Point(142, 70);
+            this.textBoxResultsFile.Location = new System.Drawing.Point(142, 8);
             this.textBoxResultsFile.Name = "textBoxResultsFile";
             this.textBoxResultsFile.Size = new System.Drawing.Size(316, 20);
             this.textBoxResultsFile.TabIndex = 8;
@@ -129,7 +121,7 @@
             // textBoxAdminPassword
             // 
             this.textBoxAdminPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 132);
+            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 70);
             this.textBoxAdminPassword.Name = "textBoxAdminPassword";
             this.textBoxAdminPassword.Size = new System.Drawing.Size(316, 20);
             this.textBoxAdminPassword.TabIndex = 9;
@@ -138,7 +130,7 @@
             // 
             this.labelNumberOfTests.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelNumberOfTests.AutoSize = true;
-            this.labelNumberOfTests.Location = new System.Drawing.Point(20, 99);
+            this.labelNumberOfTests.Location = new System.Drawing.Point(20, 37);
             this.labelNumberOfTests.Name = "labelNumberOfTests";
             this.labelNumberOfTests.Size = new System.Drawing.Size(59, 13);
             this.labelNumberOfTests.TabIndex = 12;
@@ -147,10 +139,14 @@
             // textBoxNumberOfTests
             // 
             this.textBoxNumberOfTests.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxNumberOfTests.Location = new System.Drawing.Point(142, 96);
+            this.textBoxNumberOfTests.Location = new System.Drawing.Point(142, 34);
             this.textBoxNumberOfTests.Name = "textBoxNumberOfTests";
             this.textBoxNumberOfTests.Size = new System.Drawing.Size(316, 20);
             this.textBoxNumberOfTests.TabIndex = 13;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
             // 
             // buttonSearchResultsDirectory
             // 
@@ -159,7 +155,7 @@
             this.buttonSearchResultsDirectory.FlatAppearance.BorderSize = 0;
             this.buttonSearchResultsDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonSearchResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.search_small;
-            this.buttonSearchResultsDirectory.Location = new System.Drawing.Point(464, 70);
+            this.buttonSearchResultsDirectory.Location = new System.Drawing.Point(464, 8);
             this.buttonSearchResultsDirectory.Name = "buttonSearchResultsDirectory";
             this.buttonSearchResultsDirectory.Size = new System.Drawing.Size(20, 20);
             this.buttonSearchResultsDirectory.TabIndex = 16;
@@ -171,7 +167,7 @@
             this.pictureAlertResultsDirectory.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureAlertResultsDirectory.Image = global::Simple_ABX_test.Properties.Resources.alert_small;
             this.pictureAlertResultsDirectory.InitialImage = global::Simple_ABX_test.Properties.Resources.alert_small;
-            this.pictureAlertResultsDirectory.Location = new System.Drawing.Point(8, 70);
+            this.pictureAlertResultsDirectory.Location = new System.Drawing.Point(8, 8);
             this.pictureAlertResultsDirectory.Name = "pictureAlertResultsDirectory";
             this.pictureAlertResultsDirectory.Size = new System.Drawing.Size(6, 20);
             this.pictureAlertResultsDirectory.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -184,7 +180,7 @@
             this.pictureAlertTestCount.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureAlertTestCount.Image = global::Simple_ABX_test.Properties.Resources.alert_small;
             this.pictureAlertTestCount.InitialImage = global::Simple_ABX_test.Properties.Resources.alert_small;
-            this.pictureAlertTestCount.Location = new System.Drawing.Point(8, 96);
+            this.pictureAlertTestCount.Location = new System.Drawing.Point(8, 34);
             this.pictureAlertTestCount.Name = "pictureAlertTestCount";
             this.pictureAlertTestCount.Size = new System.Drawing.Size(6, 20);
             this.pictureAlertTestCount.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -192,9 +188,13 @@
             this.pictureAlertTestCount.TabStop = false;
             this.pictureAlertTestCount.Visible = false;
             // 
-            // openFileDialog
+            // saveSettingsToolStripMenuItem
             // 
-            this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
+            this.saveSettingsToolStripMenuItem.Image = global::Simple_ABX_test.Properties.Resources.checkmark;
+            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.saveSettingsToolStripMenuItem.Text = "Speichern";
+            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // EditSettings
             // 

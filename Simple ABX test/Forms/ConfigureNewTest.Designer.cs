@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigureNewTest));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -35,12 +36,12 @@
             this.textBoxSubjectName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxSoundFileOne = new System.Windows.Forms.TextBox();
-            this.textBoxSoundFileTwo = new System.Windows.Forms.TextBox();
             this.buttonSearchSoundOne = new System.Windows.Forms.Button();
             this.buttonSearchSoundTwo = new System.Windows.Forms.Button();
             this.pictureAlertSoundOne = new System.Windows.Forms.PictureBox();
             this.pictureAlertSoundTwo = new System.Windows.Forms.PictureBox();
             this.pictureAlertSubjectName = new System.Windows.Forms.PictureBox();
+            this.textBoxSoundFileTwo = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertSoundOne)).BeginInit();
@@ -143,15 +144,6 @@
             this.textBoxSoundFileOne.Size = new System.Drawing.Size(306, 20);
             this.textBoxSoundFileOne.TabIndex = 1;
             // 
-            // textBoxSoundFileTwo
-            // 
-            this.tableLayoutPanel1.SetColumnSpan(this.textBoxSoundFileTwo, 2);
-            this.textBoxSoundFileTwo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxSoundFileTwo.Location = new System.Drawing.Point(99, 70);
-            this.textBoxSoundFileTwo.Name = "textBoxSoundFileTwo";
-            this.textBoxSoundFileTwo.Size = new System.Drawing.Size(306, 20);
-            this.textBoxSoundFileTwo.TabIndex = 2;
-            // 
             // buttonSearchSoundOne
             // 
             this.buttonSearchSoundOne.BackColor = System.Drawing.Color.Transparent;
@@ -219,6 +211,15 @@
             this.pictureAlertSubjectName.TabStop = false;
             this.pictureAlertSubjectName.Visible = false;
             // 
+            // textBoxSoundFileTwo
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.textBoxSoundFileTwo, 2);
+            this.textBoxSoundFileTwo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxSoundFileTwo.Location = new System.Drawing.Point(99, 70);
+            this.textBoxSoundFileTwo.Name = "textBoxSoundFileTwo";
+            this.textBoxSoundFileTwo.Size = new System.Drawing.Size(306, 20);
+            this.textBoxSoundFileTwo.TabIndex = 2;
+            // 
             // openFileDialog
             // 
             this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
@@ -231,6 +232,7 @@
             this.ClientSize = new System.Drawing.Size(439, 155);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigureNewTest";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

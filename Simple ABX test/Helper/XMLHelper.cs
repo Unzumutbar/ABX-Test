@@ -113,14 +113,14 @@ namespace Simple_ABX_test.Helper
         {
             string testDate = abxTestToCreate.Date.ToString("yyyy-MM-dd");
             string subjectName = Regex.Replace(abxTestToCreate.SubjectName, "[^0-9A-Za-z]+", "");
-            string fileName = string.Format("{0}_{1}.xml", testDate, subjectName);
+            string fileName = string.Format("{0}_{1}_1.xml", testDate, subjectName);
             string directory = Program.Settings.GetResultDirectory;
             string fullFileName = Path.Combine(directory, fileName);
 
-            int i = 1;
+            int i = 2;
             while(File.Exists(fullFileName))
             {
-                fileName = string.Format("{0}_{1}({2}).xml", testDate, subjectName, i);
+                fileName = string.Format("{0}_{1}_{2}.xml", testDate, subjectName, i);
                 fullFileName = Path.Combine(directory, fileName);
                 i++;
             }

@@ -33,13 +33,13 @@
             this.labelNameLabel = new System.Windows.Forms.Label();
             this.labelScoreLabel = new System.Windows.Forms.Label();
             this.dataGridResults = new System.Windows.Forms.DataGridView();
+            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelScore = new System.Windows.Forms.Label();
             this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelScore = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).BeginInit();
@@ -112,36 +112,6 @@
             this.dataGridResults.Size = new System.Drawing.Size(441, 196);
             this.dataGridResults.TabIndex = 3;
             // 
-            // testNumberDataGridViewTextBoxColumn
-            // 
-            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
-            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
-            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
-            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testNumberDataGridViewTextBoxColumn.Width = 46;
-            // 
-            // selectedAnswerDataGridViewTextBoxColumn
-            // 
-            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
-            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
-            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
-            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // correctAnswerDataGridViewTextBoxColumn
-            // 
-            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
-            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "Richtig";
-            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
-            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // passedDataGridViewCheckBoxColumn
-            // 
-            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
-            this.passedDataGridViewCheckBoxColumn.HeaderText = "Bestanden?";
-            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
-            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
-            // 
             // testResultBindingSource
             // 
             this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.Result);
@@ -165,6 +135,36 @@
             this.labelScore.Size = new System.Drawing.Size(35, 13);
             this.labelScore.TabIndex = 5;
             this.labelScore.Text = "label1";
+            // 
+            // testNumberDataGridViewTextBoxColumn
+            // 
+            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
+            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
+            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testNumberDataGridViewTextBoxColumn.Width = 46;
+            // 
+            // selectedAnswerDataGridViewTextBoxColumn
+            // 
+            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
+            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
+            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
+            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // correctAnswerDataGridViewTextBoxColumn
+            // 
+            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
+            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
+            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
+            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // passedDataGridViewCheckBoxColumn
+            // 
+            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
+            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
+            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
+            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
             // 
             // ShowResult
             // 
@@ -191,12 +191,12 @@
         private System.Windows.Forms.Label labelNameLabel;
         private System.Windows.Forms.Label labelScoreLabel;
         private System.Windows.Forms.DataGridView dataGridResults;
+        private System.Windows.Forms.BindingSource testResultBindingSource;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelScore;
         private System.Windows.Forms.DataGridViewTextBoxColumn testNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn selectedAnswerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn correctAnswerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn passedDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.BindingSource testResultBindingSource;
-        private System.Windows.Forms.Label labelName;
-        private System.Windows.Forms.Label labelScore;
     }
 }

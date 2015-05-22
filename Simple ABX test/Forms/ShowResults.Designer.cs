@@ -140,9 +140,9 @@
             this.labelCountCorrect.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCountCorrect.Location = new System.Drawing.Point(8, 397);
             this.labelCountCorrect.Name = "labelCountCorrect";
-            this.labelCountCorrect.Size = new System.Drawing.Size(185, 16);
+            this.labelCountCorrect.Size = new System.Drawing.Size(187, 16);
             this.labelCountCorrect.TabIndex = 3;
-            this.labelCountCorrect.Text = "Anzahl der richtigen Antworten";
+            this.labelCountCorrect.Text = "Anzal der Übereinstimmungen";
             // 
             // textBoxCountTests
             // 
@@ -230,19 +230,19 @@
             // 
             this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
-            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "Richtig";
+            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
             this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
             this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.correctAnswerDataGridViewTextBoxColumn.Width = 65;
+            this.correctAnswerDataGridViewTextBoxColumn.Width = 48;
             // 
             // passedDataGridViewCheckBoxColumn
             // 
             this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
-            this.passedDataGridViewCheckBoxColumn.HeaderText = "Bestanden?";
+            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
             this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
             this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.passedDataGridViewCheckBoxColumn.Width = 70;
+            this.passedDataGridViewCheckBoxColumn.Width = 68;
             // 
             // ShowResults
             // 

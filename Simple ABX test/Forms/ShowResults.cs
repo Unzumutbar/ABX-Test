@@ -108,7 +108,7 @@ namespace Simple_ABX_test.Forms
         {
             if (!Results.Any())
             {
-                MessageBox.Show("Es wurden keine Ergebnisse gefunden!");
+                MessageBox.Show("Es wurden keine Ergebnisse zum exportieren gefunden!");
                 return;
             }
             try
@@ -122,7 +122,7 @@ namespace Simple_ABX_test.Forms
                     csv.Append(newLine);
                 }
                 csv.Append(string.Format("Anzahl der Tests;{0}; ; ;{1}", textBoxCountTests.Text, Environment.NewLine));
-                csv.Append(string.Format("Anzal der Üebereinstimmungen;{0}; ; ;{1}", textBoxCountCorrect.Text, Environment.NewLine));
+                csv.Append(string.Format("Anzal der Uebereinstimmungen;{0}; ; ;{1}", textBoxCountCorrect.Text, Environment.NewLine));
                 csv.Append(string.Format("Ergebnis;{0}; ; ;{1}", textBoxResult.Text, Environment.NewLine));
 
                 saveFileDialog.FileName = string.Format("{0}_ABX_Ergebnisse.csv", DateTime.Now.ToString("yyyy.MM.dd"));

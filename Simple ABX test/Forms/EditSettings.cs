@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Simple_ABX_test.Helper;
 
@@ -21,6 +15,7 @@ namespace Simple_ABX_test
             textBoxResultsFile.Text = currentSettings.ResultsDirectory;
             textBoxAdminPassword.Text = currentSettings.AdminPassword;
             textBoxNumberOfTests.Text = currentSettings.NumberOfTests.ToString();
+            checkBoxShowResults.Checked = currentSettings.ShowResultScreenAfterTest;
         }
 
         public TestForm ParentForm
@@ -36,7 +31,7 @@ namespace Simple_ABX_test
             bool error = false;
             HideAlerts();
 
-            if(!string.IsNullOrEmpty(textBoxResultsFile.Text) && !Directory.Exists(textBoxResultsFile.Text))
+            if (!string.IsNullOrEmpty(textBoxResultsFile.Text) && !Directory.Exists(textBoxResultsFile.Text))
             {
                 pictureAlertResultsDirectory.Visible = true;
                 error = true;
@@ -74,6 +69,7 @@ namespace Simple_ABX_test
             }
 
             Program.Settings.NumberOfTests = numberOfTest;
+            Program.Settings.ShowResultScreenAfterTest = checkBoxShowResults.Checked;
 
             XMLHelper.UpdateSettings(Program.Settings);
             this.Close();

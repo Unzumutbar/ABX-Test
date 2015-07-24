@@ -48,6 +48,7 @@
             this.buttonStop = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.buttonLoop = new System.Windows.Forms.ToolStripButton();
+            this.labelTestFinished = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.toolStrip.SuspendLayout();
@@ -118,20 +119,22 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonPlayB, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.labelPlayA, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelPlayB, 5, 1);
-            this.tableLayoutPanel1.Controls.Add(this.buttonPlayX, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.labelPlayX, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.buttonSelectA, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.buttonSelectB, 4, 5);
-            this.tableLayoutPanel1.Controls.Add(this.labelTestNumber, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.toolStrip, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.buttonPlayX, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelPlayX, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSelectA, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.buttonSelectB, 4, 6);
+            this.tableLayoutPanel1.Controls.Add(this.labelTestNumber, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.toolStrip, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.labelTestFinished, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 11;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 110F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
@@ -286,6 +289,19 @@
             this.buttonLoop.Text = "Loop Sound";
             this.buttonLoop.Click += new System.EventHandler(this.buttonLoop_Click);
             // 
+            // labelTestFinished
+            // 
+            this.labelTestFinished.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.labelTestFinished.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.labelTestFinished, 5);
+            this.labelTestFinished.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTestFinished.Location = new System.Drawing.Point(64, 174);
+            this.labelTestFinished.Name = "labelTestFinished";
+            this.labelTestFinished.Size = new System.Drawing.Size(373, 33);
+            this.labelTestFinished.TabIndex = 13;
+            this.labelTestFinished.Text = "ABX-Test abgeschlossen.";
+            this.labelTestFinished.Visible = false;
+            // 
             // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +346,7 @@
         private System.Windows.Forms.ToolStripButton buttonStop;
         private System.Windows.Forms.ToolStripButton buttonLoop;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
+        private System.Windows.Forms.Label labelTestFinished;
     }
 }
 

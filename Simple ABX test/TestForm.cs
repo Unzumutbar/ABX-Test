@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Simple_ABX_test.Objects;
-using Simple_ABX_test.Helper;
-using Simple_ABX_test.Forms;
 using MediaControl;
+using Simple_ABX_test.Forms;
+using Simple_ABX_test.Helper;
+using Simple_ABX_test.Objects;
 
 namespace Simple_ABX_test
 {
@@ -70,10 +68,12 @@ namespace Simple_ABX_test
         private void TestAnswerSelected(string selectedAnswer)
         {
             _mediaPlayer.Stop();
-            var testResult = new Result() {
+            var testResult = new Result()
+            {
                 TestNumber = _currentTestNumber,
                 SelectedAnswer = selectedAnswer,
-                CorrectAnswer = _correctAnswer };
+                CorrectAnswer = _correctAnswer
+            };
 
             _currentAbxTest.AddResult(testResult);
 
@@ -84,7 +84,9 @@ namespace Simple_ABX_test
 
                 ShowAllButtons(false);
                 EnableMenuBar(true);
-                ShowResults();
+                labelTestFinished.Visible = true;
+                if (Program.Settings.ShowResultScreenAfterTest)
+                    ShowResults();
             }
         }
 
@@ -112,7 +114,8 @@ namespace Simple_ABX_test
         {
             decimal score = _currentAbxTest.Results.Count(c => c.Passed);
             decimal count = _currentAbxTest.Results.Count();
-            _currentAbxTest.UpdateTestScore(score / count);
+            if (count > 0)
+                _currentAbxTest.UpdateTestScore(score / count);
 
             if (ShowResultForm == null || (ShowResultForm.IsDisposed))
             {
@@ -172,7 +175,7 @@ namespace Simple_ABX_test
 
             EnableMenuBar(false);
             ShowAllButtons(true);
-
+            labelTestFinished.Visible = false;
             NextTest();
         }
 
@@ -201,7 +204,7 @@ namespace Simple_ABX_test
             toolStrip.Visible = isVisible;
         }
 
-        private void EnableSelectButtons (bool isEnabled)
+        private void EnableSelectButtons(bool isEnabled)
         {
             buttonSelectA.Enabled = isEnabled;
             buttonSelectB.Enabled = isEnabled;

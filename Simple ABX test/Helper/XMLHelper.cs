@@ -37,6 +37,7 @@ namespace Simple_ABX_test.Helper
             settings.ResultsDirectory = ReadSettingsResultsFile(doc);
             settings.AdminPassword = ReadSettingsAdminPassword(doc);
             settings.NumberOfTests = ReadSettingsNumberOfTests(doc);
+            settings.ShowResultScreenAfterTest = ReadSettingsShowResultScreenAfterTest(doc);
 
             return settings;
         }
@@ -102,6 +103,30 @@ namespace Simple_ABX_test.Helper
                 );
                 doc.Save(Program.DatabaseXmlFile);
                 return defaultDirectory;
+            }
+        }
+
+        private static bool ReadSettingsShowResultScreenAfterTest(XDocument doc)
+        {
+            bool defaultValue = true;
+            try
+            {
+                string valueAsString = (from _settings in doc.Root.Elements("Settings")
+                                        select _settings.Element("ShowResultScreenAfterTest").Value).FirstOrDefault();
+                bool value;
+                if (Boolean.TryParse(valueAsString, out value))
+                    return value;
+                else
+                    return defaultValue;
+
+            }
+            catch (Exception)
+            {
+                doc.Root.Element("Settings").Add(
+                    new XElement("ShowResultScreenAfterTest", defaultValue)
+                );
+                doc.Save(Program.DatabaseXmlFile);
+                return defaultValue;
             }
         }
         #endregion
@@ -171,7 +196,7 @@ namespace Simple_ABX_test.Helper
                                   select new Result
                                   {
                                       Proband = (from _settings in xdoc.Root.Elements("Data")
-                                                     select _settings.Element("Name").Value).FirstOrDefault(),
+                                                 select _settings.Element("Name").Value).FirstOrDefault(),
                                       TestNumber = int.Parse(_result.Element("TestNumber").Value),
                                       SelectedAnswer = _result.Element("SelectedAnswer").Value,
                                       CorrectAnswer = _result.Element("CorrectAnswer").Value
@@ -284,6 +309,7 @@ namespace Simple_ABX_test.Helper
             target.Element("ResultsFile").Value = settings.ResultsDirectory;
             target.Element("AdminPassword").Value = settings.AdminPassword;
             target.Element("NumberOfTests").Value = settings.NumberOfTests.ToString();
+            target.Element("ShowResultScreenAfterTest").Value = settings.ShowResultScreenAfterTest.ToString();
 
             doc.Save(Program.DatabaseXmlFile);
         }

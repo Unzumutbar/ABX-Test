@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditSettings));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.labelResultsFile = new System.Windows.Forms.Label();
             this.labelAdminPassword = new System.Windows.Forms.Label();
@@ -37,12 +38,12 @@
             this.textBoxAdminPassword = new System.Windows.Forms.TextBox();
             this.labelNumberOfTests = new System.Windows.Forms.Label();
             this.textBoxNumberOfTests = new System.Windows.Forms.TextBox();
-            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.buttonSearchResultsDirectory = new System.Windows.Forms.Button();
             this.pictureAlertResultsDirectory = new System.Windows.Forms.PictureBox();
             this.pictureAlertTestCount = new System.Windows.Forms.PictureBox();
-            this.saveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.folderBrowserDialog = new System.Windows.Forms.FolderBrowserDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.checkBoxShowResults = new System.Windows.Forms.CheckBox();
             this.menuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureAlertResultsDirectory)).BeginInit();
@@ -59,6 +60,14 @@
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip1";
             // 
+            // saveSettingsToolStripMenuItem
+            // 
+            this.saveSettingsToolStripMenuItem.Image = global::Simple_ABX_test.Properties.Resources.checkmark;
+            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
+            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.saveSettingsToolStripMenuItem.Text = "Speichern";
+            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 6;
@@ -69,24 +78,26 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.Controls.Add(this.labelResultsFile, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelAdminPassword, 2, 4);
+            this.tableLayoutPanel1.Controls.Add(this.labelAdminPassword, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.textBoxResultsFile, 3, 1);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxAdminPassword, 3, 4);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxAdminPassword, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.labelNumberOfTests, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.textBoxNumberOfTests, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.buttonSearchResultsDirectory, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureAlertResultsDirectory, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureAlertTestCount, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.checkBoxShowResults, 2, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(492, 161);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -104,7 +115,7 @@
             // 
             this.labelAdminPassword.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.labelAdminPassword.AutoSize = true;
-            this.labelAdminPassword.Location = new System.Drawing.Point(20, 73);
+            this.labelAdminPassword.Location = new System.Drawing.Point(20, 98);
             this.labelAdminPassword.Name = "labelAdminPassword";
             this.labelAdminPassword.Size = new System.Drawing.Size(82, 13);
             this.labelAdminPassword.TabIndex = 5;
@@ -116,15 +127,15 @@
             this.textBoxResultsFile.Location = new System.Drawing.Point(142, 8);
             this.textBoxResultsFile.Name = "textBoxResultsFile";
             this.textBoxResultsFile.Size = new System.Drawing.Size(316, 20);
-            this.textBoxResultsFile.TabIndex = 8;
+            this.textBoxResultsFile.TabIndex = 1;
             // 
             // textBoxAdminPassword
             // 
             this.textBoxAdminPassword.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 70);
+            this.textBoxAdminPassword.Location = new System.Drawing.Point(142, 95);
             this.textBoxAdminPassword.Name = "textBoxAdminPassword";
             this.textBoxAdminPassword.Size = new System.Drawing.Size(316, 20);
-            this.textBoxAdminPassword.TabIndex = 9;
+            this.textBoxAdminPassword.TabIndex = 5;
             // 
             // labelNumberOfTests
             // 
@@ -142,11 +153,7 @@
             this.textBoxNumberOfTests.Location = new System.Drawing.Point(142, 34);
             this.textBoxNumberOfTests.Name = "textBoxNumberOfTests";
             this.textBoxNumberOfTests.Size = new System.Drawing.Size(316, 20);
-            this.textBoxNumberOfTests.TabIndex = 13;
-            // 
-            // openFileDialog
-            // 
-            this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
+            this.textBoxNumberOfTests.TabIndex = 3;
             // 
             // buttonSearchResultsDirectory
             // 
@@ -158,7 +165,7 @@
             this.buttonSearchResultsDirectory.Location = new System.Drawing.Point(464, 8);
             this.buttonSearchResultsDirectory.Name = "buttonSearchResultsDirectory";
             this.buttonSearchResultsDirectory.Size = new System.Drawing.Size(20, 20);
-            this.buttonSearchResultsDirectory.TabIndex = 16;
+            this.buttonSearchResultsDirectory.TabIndex = 2;
             this.buttonSearchResultsDirectory.UseVisualStyleBackColor = false;
             this.buttonSearchResultsDirectory.Click += new System.EventHandler(this.buttonSearchResultsDirectory_Click);
             // 
@@ -188,13 +195,22 @@
             this.pictureAlertTestCount.TabStop = false;
             this.pictureAlertTestCount.Visible = false;
             // 
-            // saveSettingsToolStripMenuItem
+            // openFileDialog
             // 
-            this.saveSettingsToolStripMenuItem.Image = global::Simple_ABX_test.Properties.Resources.checkmark;
-            this.saveSettingsToolStripMenuItem.Name = "saveSettingsToolStripMenuItem";
-            this.saveSettingsToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.saveSettingsToolStripMenuItem.Text = "Speichern";
-            this.saveSettingsToolStripMenuItem.Click += new System.EventHandler(this.buttonSave_Click);
+            this.openFileDialog.Filter = "Sound Dateien|*.mp3; *.wav; *.ogg;";
+            // 
+            // checkBoxShowResults
+            // 
+            this.checkBoxShowResults.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.checkBoxShowResults.AutoSize = true;
+            this.checkBoxShowResults.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tableLayoutPanel1.SetColumnSpan(this.checkBoxShowResults, 2);
+            this.checkBoxShowResults.Location = new System.Drawing.Point(20, 61);
+            this.checkBoxShowResults.Name = "checkBoxShowResults";
+            this.checkBoxShowResults.Size = new System.Drawing.Size(246, 17);
+            this.checkBoxShowResults.TabIndex = 4;
+            this.checkBoxShowResults.Text = "Ergebnis nach Abschluss des Tests anzeigen?";
+            this.checkBoxShowResults.UseVisualStyleBackColor = true;
             // 
             // EditSettings
             // 
@@ -237,5 +253,6 @@
         private System.Windows.Forms.TextBox textBoxResultsFile;
         private System.Windows.Forms.Button buttonSearchResultsDirectory;
         private System.Windows.Forms.PictureBox pictureAlertResultsDirectory;
+        private System.Windows.Forms.CheckBox checkBoxShowResults;
     }
 }

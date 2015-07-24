@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Simple_ABX_test.Helper;
-
+﻿
 namespace Simple_ABX_test.Objects
 {
     public class Settings
@@ -12,6 +7,7 @@ namespace Simple_ABX_test.Objects
         public string SoundDirectory;
         public string ResultsDirectory;
         public string AdminPassword;
+        public bool ShowResultScreenAfterTest;
 
         public string GetSoundDirectory
         {
@@ -20,7 +16,7 @@ namespace Simple_ABX_test.Objects
 
         public string GetResultDirectory
         {
-            get{ return string.IsNullOrEmpty(ResultsDirectory) ? Program.AppDirectory : Program.Settings.ResultsDirectory;}
+            get { return string.IsNullOrEmpty(ResultsDirectory) ? Program.AppDirectory : Program.Settings.ResultsDirectory; }
         }
     }
 }

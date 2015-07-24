@@ -142,6 +142,7 @@
   <ItemGroup>
     <Content Include="abxIcon.ico" />
     <Content Include="FodyWeavers.xml" />
+    <Content Include="Resources\share.png" />
     <None Include="Resources\stop_small.png" />
     <None Include="Resources\stop.png" />
     <None Include="Resources\loop_small.png" />

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
 namespace Simple_ABX_test.Objects
 {
     public class Result
@@ -16,6 +12,7 @@ namespace Simple_ABX_test.Objects
             get { return SelectedAnswer == CorrectAnswer; }
         }
 
-        public string ProbandName { get; set; }
+        public string Proband { get; set; }
+        public string RowName { get; set; }
     }
 }

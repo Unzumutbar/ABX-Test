@@ -31,7 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShowResults));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.dataGridResults = new System.Windows.Forms.DataGridView();
+            this.RowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelScoreLabel = new System.Windows.Forms.Label();
             this.labelCountTests = new System.Windows.Forms.Label();
@@ -39,15 +45,11 @@
             this.textBoxCountTests = new System.Windows.Forms.TextBox();
             this.textBoxCountCorrect = new System.Windows.Forms.TextBox();
             this.textBoxResult = new System.Windows.Forms.TextBox();
+            this.labelFilter = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.buttonAddResultFile = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.ProbandName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).BeginInit();
@@ -61,17 +63,21 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
-            this.tableLayoutPanel1.Controls.Add(this.dataGridResults, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.labelScoreLabel, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.labelCountTests, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.labelCountCorrect, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxCountTests, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxCountCorrect, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.textBoxResult, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxFilter, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.dataGridResults, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.labelScoreLabel, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelCountTests, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.labelCountCorrect, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxCountTests, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxCountCorrect, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.textBoxResult, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.labelFilter, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -83,6 +89,16 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(522, 462);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // textBoxFilter
+            // 
+            this.textBoxFilter.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFilter.Location = new System.Drawing.Point(264, 3);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(250, 22);
+            this.textBoxFilter.TabIndex = 0;
+            this.textBoxFilter.TextChanged += new System.EventHandler(this.textBoxFilter_TextChanged);
+            // 
             // dataGridResults
             // 
             this.dataGridResults.AllowUserToAddRows = false;
@@ -92,7 +108,7 @@
             this.dataGridResults.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ProbandName,
+            this.RowName,
             this.testNumberDataGridViewTextBoxColumn,
             this.selectedAnswerDataGridViewTextBoxColumn,
             this.correctAnswerDataGridViewTextBoxColumn,
@@ -100,12 +116,56 @@
             this.tableLayoutPanel1.SetColumnSpan(this.dataGridResults, 2);
             this.dataGridResults.DataSource = this.testResultBindingSource;
             this.dataGridResults.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridResults.Location = new System.Drawing.Point(8, 8);
+            this.dataGridResults.Location = new System.Drawing.Point(8, 29);
             this.dataGridResults.Name = "dataGridResults";
             this.dataGridResults.ReadOnly = true;
             this.dataGridResults.RowHeadersVisible = false;
-            this.dataGridResults.Size = new System.Drawing.Size(506, 332);
+            this.dataGridResults.Size = new System.Drawing.Size(506, 311);
             this.dataGridResults.TabIndex = 0;
+            // 
+            // RowName
+            // 
+            this.RowName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.RowName.DataPropertyName = "RowName";
+            this.RowName.HeaderText = "Name";
+            this.RowName.Name = "RowName";
+            this.RowName.ReadOnly = true;
+            // 
+            // testNumberDataGridViewTextBoxColumn
+            // 
+            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
+            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
+            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testNumberDataGridViewTextBoxColumn.Width = 46;
+            // 
+            // selectedAnswerDataGridViewTextBoxColumn
+            // 
+            this.selectedAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
+            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
+            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
+            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.selectedAnswerDataGridViewTextBoxColumn.Width = 72;
+            // 
+            // correctAnswerDataGridViewTextBoxColumn
+            // 
+            this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
+            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
+            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
+            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.correctAnswerDataGridViewTextBoxColumn.Width = 48;
+            // 
+            // passedDataGridViewCheckBoxColumn
+            // 
+            this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
+            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
+            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
+            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.passedDataGridViewCheckBoxColumn.Width = 68;
             // 
             // testResultBindingSource
             // 
@@ -178,6 +238,17 @@
             this.textBoxResult.TabIndex = 6;
             this.textBoxResult.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // labelFilter
+            // 
+            this.labelFilter.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.labelFilter.AutoSize = true;
+            this.labelFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilter.Location = new System.Drawing.Point(8, 5);
+            this.labelFilter.Name = "labelFilter";
+            this.labelFilter.Size = new System.Drawing.Size(37, 16);
+            this.labelFilter.TabIndex = 7;
+            this.labelFilter.Text = "Filter";
+            // 
             // menuStrip
             // 
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -199,50 +270,6 @@
             // openFileDialog
             // 
             this.openFileDialog.Filter = "XML-Dateien|*.xml";
-            // 
-            // ProbandName
-            // 
-            this.ProbandName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ProbandName.DataPropertyName = "ProbandName";
-            this.ProbandName.HeaderText = "Name";
-            this.ProbandName.Name = "ProbandName";
-            this.ProbandName.ReadOnly = true;
-            // 
-            // testNumberDataGridViewTextBoxColumn
-            // 
-            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
-            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
-            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
-            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testNumberDataGridViewTextBoxColumn.Width = 46;
-            // 
-            // selectedAnswerDataGridViewTextBoxColumn
-            // 
-            this.selectedAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
-            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
-            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
-            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.selectedAnswerDataGridViewTextBoxColumn.Width = 72;
-            // 
-            // correctAnswerDataGridViewTextBoxColumn
-            // 
-            this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
-            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
-            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
-            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.correctAnswerDataGridViewTextBoxColumn.Width = 48;
-            // 
-            // passedDataGridViewCheckBoxColumn
-            // 
-            this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
-            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
-            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
-            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.passedDataGridViewCheckBoxColumn.Width = 68;
             // 
             // ShowResults
             // 
@@ -281,10 +308,12 @@
         private System.Windows.Forms.TextBox textBoxResult;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProbandName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RowName;
         private System.Windows.Forms.DataGridViewTextBoxColumn testNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn selectedAnswerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn correctAnswerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn passedDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.TextBox textBoxFilter;
+        private System.Windows.Forms.Label labelFilter;
     }
 }

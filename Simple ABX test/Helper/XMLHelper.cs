@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
@@ -118,7 +117,7 @@ namespace Simple_ABX_test.Helper
             string fullFileName = Path.Combine(directory, fileName);
 
             int i = 2;
-            while(File.Exists(fullFileName))
+            while (File.Exists(fullFileName))
             {
                 fileName = string.Format("{0}_{1}_{2}.xml", testDate, subjectName, i);
                 fullFileName = Path.Combine(directory, fileName);
@@ -169,18 +168,20 @@ namespace Simple_ABX_test.Helper
             {
                 XDocument xdoc = XDocument.Load(file);
                 var resultList = (from _result in xdoc.Root.Element("Results").Elements("Result")
-                        select new Result
-                        {
-                            TestNumber = int.Parse(_result.Element("TestNumber").Value),
-                            SelectedAnswer = _result.Element("SelectedAnswer").Value,
-                            CorrectAnswer = _result.Element("CorrectAnswer").Value
-                        }).ToList();
+                                  select new Result
+                                  {
+                                      Proband = (from _settings in xdoc.Root.Elements("Data")
+                                                     select _settings.Element("Name").Value).FirstOrDefault(),
+                                      TestNumber = int.Parse(_result.Element("TestNumber").Value),
+                                      SelectedAnswer = _result.Element("SelectedAnswer").Value,
+                                      CorrectAnswer = _result.Element("CorrectAnswer").Value
+                                  }).ToList();
 
-                resultList.FirstOrDefault().ProbandName = ReadResultName(xdoc);
+                resultList.FirstOrDefault().RowName = ReadResultName(xdoc);
                 if (resultList.Count > 3)
                 {
-                    resultList.ElementAt(1).ProbandName = ReadResultSoundFileA(xdoc);
-                    resultList.ElementAt(2).ProbandName = ReadResultSoundFileB(xdoc);
+                    resultList.ElementAt(1).RowName = ReadResultSoundFileA(xdoc);
+                    resultList.ElementAt(2).RowName = ReadResultSoundFileB(xdoc);
                 }
 
 
@@ -213,12 +214,12 @@ namespace Simple_ABX_test.Helper
             try
             {
                 string name = (from _settings in xdoc.Root.Elements("Data")
-                                      select _settings.Element("Name").Value).FirstOrDefault();
+                               select _settings.Element("Name").Value).FirstOrDefault();
 
                 string date = (from _settings in xdoc.Root.Elements("Data")
                                select _settings.Element("Date").Value).FirstOrDefault();
 
-                return string.Format("{0} {1}", name, date);
+                return string.Format("{0} - {1}", name, date);
 
             }
             catch
@@ -232,7 +233,7 @@ namespace Simple_ABX_test.Helper
             try
             {
                 string soundFile = (from _settings in xdoc.Root.Elements("Data")
-                               select _settings.Element("SoundFileA").Value).FirstOrDefault();
+                                    select _settings.Element("SoundFileA").Value).FirstOrDefault();
 
                 return string.Format("Sound A: {0}", Path.GetFileName(soundFile));
 

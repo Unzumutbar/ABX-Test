@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Simple_ABX_test.Helper;
 using Simple_ABX_test.Objects;
@@ -39,14 +35,20 @@ namespace Simple_ABX_test.Forms
                 MessageBox.Show("Es wurden keine Ergebnisse gefunden!");
                 return;
             }
+            var filteredResults = _resultList;
+            if (!string.IsNullOrEmpty(textBoxFilter.Text))
+                filteredResults = _resultList.Where(res => res.Proband != null && res.Proband.ToUpper().Contains(textBoxFilter.Text.ToUpper())).ToList();
 
-            Results = new SortableBindingList<Result>(_resultList);
+            Results = new SortableBindingList<Result>(filteredResults);
             var source = new BindingSource(Results, null);
             dataGridResults.DataSource = source;
 
-            decimal score = _resultList.Count(c => c.Passed);
-            decimal count = _resultList.Count();
-            decimal totalScore = score / count;
+            decimal score = filteredResults.Count(c => c.Passed);
+            decimal count = filteredResults.Count();
+            decimal totalScore = 0;
+
+            if(count > 0)
+            totalScore = score / count;
 
             textBoxCountTests.Text = count.ToString();
             textBoxCountCorrect.Text = score.ToString();
@@ -94,6 +96,11 @@ namespace Simple_ABX_test.Forms
                     MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
+        }
+
+        private void textBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            RefreshSortableBindingList();
         }
     }
 }

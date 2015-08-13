@@ -38,7 +38,11 @@ namespace Simple_ABX_test.Forms
             }
             var filteredResults = _resultList;
             if (!string.IsNullOrEmpty(textBoxFilter.Text))
-                filteredResults = _resultList.Where(res => res.Proband != null && res.Proband.ToUpper().Contains(textBoxFilter.Text.ToUpper())).ToList();
+                filteredResults = _resultList.Where(res =>
+                                                    (!string.IsNullOrEmpty(res.Proband) && res.Proband.ToUpper().Contains(textBoxFilter.Text.ToUpper())) ||
+                                                    (!string.IsNullOrEmpty(res.SoundFileA) && res.SoundFileA.ToUpper().Contains(textBoxFilter.Text.ToUpper())) ||
+                                                    (!string.IsNullOrEmpty(res.SoundFileB) && res.SoundFileB.ToUpper().Contains(textBoxFilter.Text.ToUpper()))
+                                                    ).ToList();
 
             Results = new SortableBindingList<Result>(filteredResults);
             var source = new BindingSource(Results, null);

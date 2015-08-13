@@ -34,6 +34,11 @@
             this.textBoxFilter = new System.Windows.Forms.TextBox();
             this.dataGridResults = new System.Windows.Forms.DataGridView();
             this.RowName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.labelScoreLabel = new System.Windows.Forms.Label();
             this.labelCountTests = new System.Windows.Forms.Label();
             this.labelCountCorrect = new System.Windows.Forms.Label();
@@ -42,20 +47,15 @@
             this.textBoxResult = new System.Windows.Forms.TextBox();
             this.labelFilter = new System.Windows.Forms.Label();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.buttonAddResultFile = new System.Windows.Forms.ToolStripMenuItem();
+            this.buttonExportList = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.buttonExportList = new System.Windows.Forms.ToolStripMenuItem();
-            this.testNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selectedAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.correctAnswerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.testResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonAddResultFile = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).BeginInit();
-            this.menuStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -132,6 +132,46 @@
             this.RowName.HeaderText = "Name";
             this.RowName.Name = "RowName";
             this.RowName.ReadOnly = true;
+            // 
+            // testNumberDataGridViewTextBoxColumn
+            // 
+            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
+            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
+            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
+            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.testNumberDataGridViewTextBoxColumn.Width = 46;
+            // 
+            // selectedAnswerDataGridViewTextBoxColumn
+            // 
+            this.selectedAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
+            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
+            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
+            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.selectedAnswerDataGridViewTextBoxColumn.Width = 72;
+            // 
+            // correctAnswerDataGridViewTextBoxColumn
+            // 
+            this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
+            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
+            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
+            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
+            this.correctAnswerDataGridViewTextBoxColumn.Width = 48;
+            // 
+            // passedDataGridViewCheckBoxColumn
+            // 
+            this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
+            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
+            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
+            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.passedDataGridViewCheckBoxColumn.Width = 68;
+            // 
+            // testResultBindingSource
+            // 
+            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.Result);
             // 
             // labelScoreLabel
             // 
@@ -222,9 +262,13 @@
             this.menuStrip.TabIndex = 1;
             this.menuStrip.Text = "menuStrip1";
             // 
-            // openFileDialog
+            // buttonAddResultFile
             // 
-            this.openFileDialog.Filter = "XML-Dateien|*.xml";
+            this.buttonAddResultFile.Image = global::Simple_ABX_test.Properties.Resources.plus;
+            this.buttonAddResultFile.Name = "buttonAddResultFile";
+            this.buttonAddResultFile.Size = new System.Drawing.Size(143, 20);
+            this.buttonAddResultFile.Text = "Ergebnis hinzufügen";
+            this.buttonAddResultFile.Click += new System.EventHandler(this.buttonAddResultFile_Click);
             // 
             // buttonExportList
             // 
@@ -234,53 +278,9 @@
             this.buttonExportList.Text = "Liste exportieren";
             this.buttonExportList.Click += new System.EventHandler(this.buttonExportList_Click);
             // 
-            // testNumberDataGridViewTextBoxColumn
+            // openFileDialog
             // 
-            this.testNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.testNumberDataGridViewTextBoxColumn.DataPropertyName = "TestNumber";
-            this.testNumberDataGridViewTextBoxColumn.HeaderText = "Nr.";
-            this.testNumberDataGridViewTextBoxColumn.Name = "testNumberDataGridViewTextBoxColumn";
-            this.testNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            this.testNumberDataGridViewTextBoxColumn.Width = 46;
-            // 
-            // selectedAnswerDataGridViewTextBoxColumn
-            // 
-            this.selectedAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.selectedAnswerDataGridViewTextBoxColumn.DataPropertyName = "SelectedAnswer";
-            this.selectedAnswerDataGridViewTextBoxColumn.HeaderText = "Auswahl";
-            this.selectedAnswerDataGridViewTextBoxColumn.Name = "selectedAnswerDataGridViewTextBoxColumn";
-            this.selectedAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.selectedAnswerDataGridViewTextBoxColumn.Width = 72;
-            // 
-            // correctAnswerDataGridViewTextBoxColumn
-            // 
-            this.correctAnswerDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.correctAnswerDataGridViewTextBoxColumn.DataPropertyName = "CorrectAnswer";
-            this.correctAnswerDataGridViewTextBoxColumn.HeaderText = "X =";
-            this.correctAnswerDataGridViewTextBoxColumn.Name = "correctAnswerDataGridViewTextBoxColumn";
-            this.correctAnswerDataGridViewTextBoxColumn.ReadOnly = true;
-            this.correctAnswerDataGridViewTextBoxColumn.Width = 48;
-            // 
-            // passedDataGridViewCheckBoxColumn
-            // 
-            this.passedDataGridViewCheckBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.passedDataGridViewCheckBoxColumn.DataPropertyName = "Passed";
-            this.passedDataGridViewCheckBoxColumn.HeaderText = "Kongruent?";
-            this.passedDataGridViewCheckBoxColumn.Name = "passedDataGridViewCheckBoxColumn";
-            this.passedDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.passedDataGridViewCheckBoxColumn.Width = 68;
-            // 
-            // testResultBindingSource
-            // 
-            this.testResultBindingSource.DataSource = typeof(Simple_ABX_test.Objects.Result);
-            // 
-            // buttonAddResultFile
-            // 
-            this.buttonAddResultFile.Image = global::Simple_ABX_test.Properties.Resources.plus;
-            this.buttonAddResultFile.Name = "buttonAddResultFile";
-            this.buttonAddResultFile.Size = new System.Drawing.Size(143, 20);
-            this.buttonAddResultFile.Text = "Ergebnis hinzufügen";
-            this.buttonAddResultFile.Click += new System.EventHandler(this.buttonAddResultFile_Click);
+            this.openFileDialog.Filter = "XML-Dateien|*.xml";
             // 
             // ShowResults
             // 
@@ -296,9 +296,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).EndInit();
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.testResultBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

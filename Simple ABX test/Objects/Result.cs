@@ -14,5 +14,8 @@ namespace Simple_ABX_test.Objects
 
         public string Proband { get; set; }
         public string RowName { get; set; }
+
+        public string SoundFileA { get; set; }
+        public string SoundFileB { get; set; }
     }
 }

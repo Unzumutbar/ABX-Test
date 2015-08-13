@@ -199,7 +199,11 @@ namespace Simple_ABX_test.Helper
                                                  select _settings.Element("Name").Value).FirstOrDefault(),
                                       TestNumber = int.Parse(_result.Element("TestNumber").Value),
                                       SelectedAnswer = _result.Element("SelectedAnswer").Value,
-                                      CorrectAnswer = _result.Element("CorrectAnswer").Value
+                                      CorrectAnswer = _result.Element("CorrectAnswer").Value,
+                                      SoundFileA = Path.GetFileNameWithoutExtension((from _settings in xdoc.Root.Elements("Data")
+                                                    select _settings.Element("SoundFileA").Value).FirstOrDefault()),
+                                      SoundFileB = Path.GetFileNameWithoutExtension((from _settings in xdoc.Root.Elements("Data")
+                                                    select _settings.Element("SoundFileB").Value).FirstOrDefault()),
                                   }).ToList();
 
                 resultList.FirstOrDefault().RowName = ReadResultName(xdoc);
